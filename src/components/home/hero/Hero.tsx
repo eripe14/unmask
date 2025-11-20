@@ -12,8 +12,8 @@ export function Hero() {
                     <div>
                         <h1 className="mt-4 text-justify text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
                             Wykrywaj <span className="text-primary">manipulacje</span>, filtruj{' '}
-                            <span className="text-primary">fake newsy</span>, ucz się krytycznie
-                            myśleć.
+                            <span className="text-primary">fake newsy</span>, ucz się myśleć
+                            krytycznie.
                         </h1>
 
                         <p className="mt-6 pb-4 text-justify text-lg leading-relaxed text-slate-600">

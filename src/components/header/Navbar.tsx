@@ -10,13 +10,18 @@ import Link from 'next/link'
 export function Navbar() {
     const navigation = [
         {
-            name: 'Funkcje',
-            sectionId: 'features',
+            name: 'O nas',
+            sectionId: 'about',
             href: '/',
         },
         {
-            name: 'Jak to działa',
-            sectionId: 'how',
+            name: 'Nasz cel',
+            sectionId: 'mission',
+            href: '/',
+        },
+        {
+            name: 'Funkcje',
+            sectionId: 'features',
             href: '/',
         },
         {
