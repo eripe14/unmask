@@ -3,6 +3,7 @@ import { Navbar } from '@/components/header/Navbar'
 import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { Reel } from '@/types/post'
 import ReelFeed from '@/components/reels/ReelFeed'
+import { auth } from '@clerk/nextjs/server'
 
 const REELS: Reel[] = [
     {
@@ -34,6 +35,9 @@ const REELS: Reel[] = [
 ]
 
 export default async function Discover() {
+    const userId = auth()
+    if (!userId) return null
+
     await ensureProfile()
 
     return (
