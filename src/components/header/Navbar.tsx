@@ -6,27 +6,27 @@ import { ScanEye } from 'lucide-react'
 import React from 'react'
 import { AuthButtons } from '@/components/header/AuthButtons'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 export function Navbar() {
+    const router = useRouter()
+    const pathname = usePathname()
+
     const navigation = [
         {
             name: 'O nas',
             sectionId: 'about',
-            href: '/',
         },
         {
             name: 'Nasz cel',
             sectionId: 'mission',
-            href: '/',
         },
         {
             name: 'Funkcje',
             sectionId: 'features',
-            href: '/',
         },
         {
             name: 'Przeglądaj treści',
-            sectionId: '',
             href: '/discover',
         },
         {
@@ -34,6 +34,22 @@ export function Navbar() {
             sectionId: 'faq',
         },
     ]
+
+    const handleNavClick = (item: (typeof navigation)[number]) => {
+        if (item.href && !item.sectionId) {
+            router.push(item.href)
+            return
+        }
+
+        if (item.sectionId) {
+            if (pathname !== '/') {
+                router.push(`/#${item.sectionId}`)
+                return
+            }
+
+            document.getElementById(item.sectionId)?.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
 
     return (
         <header className="glass sticky top-0 z-50 border-b border-slate-200">
@@ -55,21 +71,13 @@ export function Navbar() {
                         <button
                             key={item.name}
                             className="transition-all duration-300 hover:scale-110 hover:text-slate-900"
-                            onClick={() => {
-                                if (item.href && item.href !== '/') {
-                                    window.location.href = item.href
-                                    return
-                                }
-
-                                document
-                                    .getElementById(item.sectionId)
-                                    ?.scrollIntoView({ behavior: 'smooth' })
-                            }}
+                            onClick={() => handleNavClick(item)}
                         >
                             {item.name}
                         </button>
                     ))}
                 </nav>
+
                 <div className="flex items-center gap-3">
                     <AuthButtons />
                 </div>

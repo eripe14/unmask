@@ -1,5 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
+import FloatingParticles from '@/components/ui/FloatingParticles'
+import React from 'react'
 
 const features = [
     {
@@ -26,6 +28,7 @@ const features = [
 export function FeaturesSection() {
     return (
         <section id="features" className="relative overflow-hidden pt-8">
+            <FloatingParticles count={15} />
             <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
                 <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
                     Funkcje i możliwości <span className="text-primary">Unmask</span>

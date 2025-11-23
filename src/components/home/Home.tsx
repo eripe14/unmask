@@ -7,7 +7,7 @@ import { FAQSection } from '@/components/home/FAQSection'
 
 export function Home() {
     return (
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden pt-8 md:pt-12">
             <Hero />
             <AboutSection />
             <MissionSection />

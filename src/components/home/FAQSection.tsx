@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import FloatingParticles from '@/components/ui/FloatingParticles'
 
 // --- Dane FAQ ---
 const faqItems = [
@@ -83,6 +84,7 @@ const FAQItem = ({
 export function FAQSection() {
     return (
         <section id="faq" className="relative overflow-hidden bg-white py-8">
+            <FloatingParticles count={15} />
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
                     <h2 className="text-base font-semibold uppercase tracking-wide text-primary">

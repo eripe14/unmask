@@ -1,9 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
+import FloatingParticles from '@/components/ui/FloatingParticles'
+import React from 'react'
 
 export function MissionSection() {
     return (
         <section id="mission" className="relative overflow-hidden pt-8">
+            <FloatingParticles count={15} />
             <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
                 <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
                     Nasz cel: <span className="text-primary">świadome społeczeństwo</span>

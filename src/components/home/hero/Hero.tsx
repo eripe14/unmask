@@ -3,10 +3,13 @@
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import { HeroImage } from '@/components/home/hero/HeroImage'
+import FloatingParticles from '@/components/ui/FloatingParticles'
+import React from 'react'
 
 export function Hero() {
     return (
         <section className="relative overflow-hidden">
+            <FloatingParticles count={15} />
             <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
                 <div className="grid items-center gap-12 md:grid-cols-2">
                     <div>

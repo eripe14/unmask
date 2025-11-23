@@ -58,7 +58,7 @@ export function Footer() {
                                 <div className="text-sm text-slate-500">{APP.tagline}</div>
                             </div>
                         </Link>
-                        <p className="mt-4 max-w-sm text-sm text-slate-600">
+                        <p className="mt-4 max-w-sm text-justify text-sm text-slate-600">
                             Twoje narzędzie do weryfikacji cyfrowej rzeczywistości. Budujemy
                             świadome społeczeństwo odporne na AI-manipulacje.
                         </p>
