@@ -9,14 +9,12 @@ const supabase = createClient(
 )
 
 async function getUserStats(userId: string) {
-    // Pobierz profil użytkownika
     const { data: profile } = await supabase
         .from('profiles')
         .select('correct_answers, name, email')
         .eq('id', userId)
         .single()
 
-    // Pobierz wszystkie głosy użytkownika
     const { data: votes } = await supabase
         .from('user_votes')
         .select('decision, created_at, reel_id, reels(verdict)')
