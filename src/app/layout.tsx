@@ -4,6 +4,7 @@ import { APP } from '@/lib/constants'
 import { ClerkProvider } from '@clerk/nextjs'
 import React from 'react'
 import { Navbar } from '@/components/header/Navbar'
+import { plPL } from '@clerk/localizations'
 
 export const metadata: Metadata = {
     title: APP.name,
@@ -12,7 +13,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <ClerkProvider>
+        <ClerkProvider
+            localization={plPL}
+            appearance={{
+                variables: { colorPrimary: 'hsl(var(--primary))' },
+            }}
+        >
             <html lang="pl">
                 <body className="relative min-h-dvh bg-white text-slate-900 antialiased">
                     <div className={'relative z-10'}>

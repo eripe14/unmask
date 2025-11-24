@@ -14,13 +14,7 @@ export async function ensureProfile() {
     const email = user.emailAddresses[0]?.emailAddress ?? null
     const name = user.firstName || user.username || email || 'user'
 
-    const { error } = await supabaseAdmin
+    await supabaseAdmin
         .from('profiles')
         .upsert({ id, email, name, updated_at: new Date().toISOString() }, { onConflict: 'id' })
-
-    if (error) {
-        console.error('[ensureProfile] upsert error:', error)
-    } else {
-        console.log('[ensureProfile] upsert OK for', id)
-    }
 }

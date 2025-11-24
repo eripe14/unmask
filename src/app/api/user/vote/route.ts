@@ -39,7 +39,6 @@ export async function POST(request: Request) {
             .single()
 
         if (error) {
-            console.error('Błąd zapisu głosu:', error)
             return NextResponse.json(
                 { error: 'Nie udało się zapisać głosu', details: error.message },
                 { status: 500 },

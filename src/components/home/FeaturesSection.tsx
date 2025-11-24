@@ -42,7 +42,7 @@ export function FeaturesSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.25 }}
                             transition={{ duration: 0.35, delay: i * 0.05, ease: 'easeOut' }}
-                            className="group relative rounded-2xl border border-slate-200 bg-white p-5 shadow-lg ring-0 transition-transform duration-200 will-change-transform before:absolute before:inset-0 before:-z-10 before:rounded-3xl before:bg-[radial-gradient(60%_60%_at_50%_40%,rgba(225,29,72,0.14),transparent_70%)] before:opacity-0 before:transition-opacity before:duration-200 hover:-translate-y-1.5 hover:scale-[1.015] hover:border-primary/60 hover:shadow-xl hover:ring-1 hover:ring-primary/30 group-hover:before:opacity-100 md:p-6"
+                            className="relative rounded-2xl border border-slate-200 bg-white p-5 shadow-lg ring-0 transition-transform duration-200 will-change-transform before:absolute before:inset-0 before:-z-10 before:rounded-3xl before:bg-[radial-gradient(60%_60%_at_50%_40%,rgba(225,29,72,0.14),transparent_70%)] before:opacity-0 before:transition-opacity before:duration-200 hover:-translate-y-1.5 hover:scale-[1.015] hover:border-primary/60 hover:shadow-xl hover:ring-1 hover:ring-primary/30 group-hover:before:opacity-100 md:p-6"
                         >
                             <h3 className="mt-4 text-lg font-semibold text-slate-900 md:text-xl">
                                 {f.title}
@@ -56,19 +56,6 @@ export function FeaturesSection() {
                     ))}
                 </div>
             </div>
-
-            <style jsx>{`
-                @media (prefers-reduced-motion: reduce) {
-                    .group {
-                        transition: none !important;
-                        transform: none !important;
-                    }
-
-                    .group:hover {
-                        transform: none !important;
-                    }
-                }
-            `}</style>
         </section>
     )
 }

@@ -111,7 +111,6 @@ export function FAQSection() {
                 </div>
             </div>
 
-            {/* Dodatkowy element wizualny (glowing spot) pasujący do kolorystyki */}
             <div className="absolute right-0 top-0 -z-10 h-96 w-96 -translate-y-1/2 rounded-full bg-primary/10 blur-[100px]" />
             <div className="absolute bottom-0 left-0 -z-10 h-72 w-72 translate-y-1/2 rounded-full bg-primary/10 blur-[100px]" />
         </section>
