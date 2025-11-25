@@ -24,7 +24,7 @@ export function AboutSection() {
                     >
                         <p className="text-md mt-2 text-justify leading-relaxed text-slate-700">
                             Żyjemy w erze cyfrowej, w której odróżnienie treści autentycznych od
-                            tych wygenerowanych lub zmanipulowanych przez sztuczną inteligencję (AI)
+                            tych wygenerowanych lub zmanipulowanych przez sztuczną inteligencję
                             staje się codziennym wyzwaniem. W Unmask wierzymy, że kluczem do walki z
                             dezinformacją jest świadomość.
                         </p>

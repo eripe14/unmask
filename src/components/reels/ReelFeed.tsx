@@ -203,10 +203,6 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
         >
-            <div className="fixed left-4 top-4 z-30 rounded-full bg-black/70 px-3 py-1.5 text-sm font-semibold text-white shadow-lg backdrop-blur-sm sm:left-6 sm:top-6 sm:px-4 sm:py-2">
-                Rolka {index + 1}/{availableReels.length}
-            </div>
-
             <div className="relative h-full w-full overflow-hidden">
                 <AnimatePresence mode="popLayout" initial={false}>
                     <motion.div
@@ -248,10 +244,21 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
                                         Twoja odpowiedź jest poprawna!
                                     </p>
                                     {current?.source && (
-                                        <div className="mt-4 rounded-xl bg-slate-50 p-4 text-left">
+                                        <div className="mt-4 justify-center rounded-xl bg-slate-50 p-4">
                                             <p className="text-sm font-semibold leading-relaxed text-slate-700">
-                                                Źródło: {current.source}
+                                                Źródło: @{current.source}
                                             </p>
+
+                                            {current?.source_link && (
+                                                <a
+                                                    href={current.source_link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="mt-4 inline-block text-sm text-primary decoration-0 hover:underline"
+                                                >
+                                                    Sprawdź źródło
+                                                </a>
+                                            )}
                                         </div>
                                     )}
                                     <button
@@ -272,25 +279,28 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
                                     </p>
                                     {current?.explanation_summary && (
                                         <div className="mt-4 rounded-xl bg-slate-50 p-4 text-left">
-                                            <p className="text-sm leading-relaxed text-slate-700">
+                                            <p className="text-justify text-sm leading-relaxed text-slate-700">
                                                 {current.explanation_summary}
                                             </p>
                                         </div>
                                     )}
                                     {current?.source && (
-                                        <p className="mt-2 text-sm font-semibold text-slate-700">
-                                            Źródło: {current.source}
-                                        </p>
-                                    )}
-                                    {current?.source_link && (
-                                        <a
-                                            href={current.source_link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="mt-4 inline-block text-sm text-blue-600 hover:underline"
-                                        >
-                                            Sprawdź link →
-                                        </a>
+                                        <div className="mt-4 justify-center rounded-xl bg-slate-50 p-4">
+                                            <p className="text-sm font-semibold leading-relaxed text-slate-700">
+                                                Źródło: @{current.source}
+                                            </p>
+
+                                            {current?.source_link && (
+                                                <a
+                                                    href={current.source_link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="mt-4 inline-block text-sm text-primary decoration-0 hover:underline"
+                                                >
+                                                    Sprawdź źródło
+                                                </a>
+                                            )}
+                                        </div>
                                     )}
                                     <button
                                         onClick={closeFeedback}

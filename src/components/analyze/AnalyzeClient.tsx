@@ -348,6 +348,7 @@ function plLabel(k: string) {
             return k
     }
 }
+
 function plHint(k: string) {
     switch (k) {
         case 'sentVarLow':
@@ -370,23 +371,28 @@ function plHint(k: string) {
 function mean(a: number[]) {
     return a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0
 }
+
 function stddev(a: number[], m: number) {
     if (!a.length) return 0
     const v = a.reduce((s, x) => s + (x - m) * (x - m), 0) / a.length
     return Math.sqrt(v)
 }
+
 function clamp01(x: number) {
     return Math.max(0, Math.min(1, x))
 }
+
 function argmax(a: number[]) {
     return a.reduce((iMax, x, i, arr) => (x > arr[iMax] ? i : iMax), 0)
 }
+
 function percentile(a: number[], p: number) {
     if (!a.length) return 0
     const b = [...a].sort((x, y) => x - y)
     const idx = Math.min(b.length - 1, Math.max(0, Math.round(p * (b.length - 1))))
     return b[idx]
 }
+
 function maxNgramRepeat(words: string[], minN: number, maxN: number) {
     let mx = 0
     for (let n = minN; n <= maxN; n++) {

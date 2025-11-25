@@ -8,6 +8,7 @@ export type Reel = {
     src: string | null
     title: string
     body: string | null
+    author: string | null
     source: string | null
 
     verdict: VerdictType

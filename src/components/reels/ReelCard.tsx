@@ -1,8 +1,9 @@
 'use client'
 
-import { FileText, Image as ImageIcon, Pause, Play } from 'lucide-react'
+import { FileText, Pause, Play } from 'lucide-react'
 import { Reel } from '@/types/post'
 import React, { useEffect, useRef, useState } from 'react'
+import FloatingParticles from '@/components/ui/FloatingParticles'
 
 export default function ReelCard({ reel }: { reel: Reel }) {
     const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -71,23 +72,19 @@ export default function ReelCard({ reel }: { reel: Reel }) {
     }, [reel.id, reel.type, reel.src])
 
     return (
-        <article className="relative flex h-full w-full flex-col overflow-hidden bg-black">
-            <header className="absolute left-0 right-0 top-0 z-10 flex shrink-0 items-center justify-between bg-gradient-to-b from-black/60 via-black/30 to-transparent px-4 py-3 sm:px-5">
-                <div className="flex items-center gap-3">
-                    <div className="grid size-9 place-items-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
-                        {reel.type === 'video' ? (
-                            <Play className="size-4" />
-                        ) : reel.type === 'image' ? (
-                            <ImageIcon className="size-4" />
-                        ) : (
-                            <FileText className="size-4" />
+        <article className="relative flex h-full w-full flex-col overflow-hidden bg-white">
+            <header className="absolute left-0 right-0 top-0 z-10 flex shrink-0 items-center justify-between px-4 py-3 sm:px-5">
+                <div className="flex flex-grow items-center justify-center gap-3">
+                    <div className="grid size-9 place-items-center rounded-xl text-white backdrop-blur-sm">
+                        {(!reel.type || (reel.type !== 'video' && reel.type !== 'image')) && (
+                            <FileText className="size-8 text-primary" />
                         )}
                     </div>
-                    <div>
-                        <div className="line-clamp-1 text-sm font-semibold text-white drop-shadow-md">
+                    {(!reel.type || (reel.type !== 'video' && reel.type !== 'image')) && (
+                        <div className="line-clamp-1 text-xl font-semibold text-slate-900 drop-shadow-md md:text-3xl">
                             {reel.title ?? 'Treść do oceny'}
                         </div>
-                    </div>
+                    )}
                 </div>
             </header>
 
@@ -133,8 +130,26 @@ export default function ReelCard({ reel }: { reel: Reel }) {
                     />
                 )}
                 {reel.type === 'text' && (
-                    <div className="mx-auto h-full w-full max-w-md overflow-auto bg-gradient-to-b from-slate-50 to-slate-100 p-6">
-                        <p className="text-lg leading-relaxed text-slate-800">{reel.body}</p>
+                    <div className="mx-auto flex h-full w-full items-center justify-center bg-white p-6 sm:p-8">
+                        <FloatingParticles />
+                        <div className="relative">
+                            <div
+                                className="max-w-96 rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+                                style={{
+                                    boxShadow:
+                                        '0 0 0 4px #e11d48, 0 0 30px 10px rgba(225, 28, 72, 0.7)',
+                                }}
+                            >
+                                <p className="text-justify text-xl font-medium leading-relaxed text-slate-800">
+                                    {reel.body}
+                                </p>
+                                {reel.author && (
+                                    <p className="mt-4 text-sm font-semibold text-primary">
+                                        - {reel.author}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>

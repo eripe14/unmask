@@ -34,7 +34,8 @@ async function getUnseenReels(userId: string): Promise<Reel[]> {
         return []
     }
 
-    return (reelsData || []) as Reel[]
+    const shuffledReels = (reelsData || []).sort(() => Math.random() - 0.5)
+    return shuffledReels as Reel[]
 }
 
 export default async function Discover() {

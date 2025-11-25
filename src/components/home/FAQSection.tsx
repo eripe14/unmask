@@ -9,19 +9,15 @@ import FloatingParticles from '@/components/ui/FloatingParticles'
 const faqItems = [
     {
         question: 'Czym dokładnie jest Unmask?',
-        answer: 'Unmask to platforma dedykowana walce z cyfrową dezinformacją i treściami zmanipulowanymi lub generowanymi przez sztuczną inteligencję (AI). Naszą misją jest edukowanie społeczeństwa i dostarczanie narzędzi do weryfikacji autentyczności treści online.',
+        answer: 'Unmask to platforma dedykowana walce z cyfrową dezinformacją i treściami zmanipulowanymi lub generowanymi przez sztuczną inteligencję. Naszą misją jest edukowanie społeczeństwa i dostarczanie narzędzi do weryfikacji autentyczności treści online.',
     },
     {
         question: 'Jak Unmask wykrywa treści generowane przez AI?',
-        answer: 'TODO',
-    },
-    {
-        question: 'Czy mogę używać Unmask za darmo?',
-        answer: 'Tak, podstawowe funkcje edukacyjne i dostęp do wybranych analiz są darmowe. Oferujemy również plany premium z zaawansowanymi narzędziami do weryfikacji i nieograniczonym dostępem do naszej bazy danych treści.',
+        answer: 'Jest to badane za pomocą heurystyki tekstu oraz innych właściwości takich jak: jednorodność długich zdań, różnorodność słów, powtarzalność n-gramów, wariancja stop-słów, frazy szablonowe w języku polski oraz niska "przecinkowość".',
     },
     {
         question: 'Czym jest "deepfake" i czy Unmask to wykrywa?',
-        answer: 'Deepfake to rodzaj fałszerstwa stworzonego przez AI, które łączy i nakłada istniejące obrazy i materiały wideo, aby stworzyć fałszywe wideo lub audio. Tak, wykrywanie deepfake’ów w wideo i audio jest jedną z kluczowych funkcji naszej platformy.',
+        answer: 'Deepfake to rodzaj fałszerstwa stworzonego przez AI, które łączy i nakłada istniejące obrazy i materiały wideo, aby stworzyć fałszywe wideo lub audio. Tak, wykrywanie deepfake’ów w wideo i audio jest naszym priorytetem i jest stale rozwijane.',
     },
     {
         question: 'W jaki sposób Unmask mnie edukuje?',
