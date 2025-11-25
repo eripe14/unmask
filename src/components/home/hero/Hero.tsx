@@ -5,8 +5,11 @@ import Button from '@/components/ui/Button'
 import { HeroImage } from '@/components/home/hero/HeroImage'
 import FloatingParticles from '@/components/ui/FloatingParticles'
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 export function Hero() {
+    const router = useRouter()
+
     return (
         <section className="relative overflow-hidden">
             <FloatingParticles count={15} />
@@ -26,7 +29,10 @@ export function Hero() {
                             <strong>Fake/AI</strong>. Dostajesz natychmiastowe wyjaśnienia i porady.
                         </p>
 
-                        <Button label={'Zacznij przeglądać'} onClick={() => {}} />
+                        <Button
+                            label={'Zacznij przeglądać'}
+                            onClick={() => router.push('/discover')}
+                        />
                     </div>
 
                     <motion.div
