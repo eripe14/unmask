@@ -31,9 +31,7 @@ export function Footer() {
         {
             title: 'Prawne',
             items: [
-                { name: 'Regulamin', href: '/terms', section: undefined },
                 { name: 'Polityka Prywatności', href: '/privacy-and-policy', section: undefined },
-                { name: 'Licencje', href: '/licenses', section: undefined },
             ],
         },
     ]
