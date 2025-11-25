@@ -19,6 +19,7 @@ export function Navbar() {
         { name: 'Nasz cel', sectionId: 'mission', href: '/' },
         { name: 'Funkcje', sectionId: 'features', href: '/' },
         { name: 'Przeglądaj treści', sectionId: '', href: '/discover' },
+        { name: 'Analizuj treści', sectionId: '', href: '/analyze' },
         { name: 'FAQ', sectionId: 'faq', href: '/' },
     ] as const
 

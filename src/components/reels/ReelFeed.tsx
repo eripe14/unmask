@@ -18,6 +18,7 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
 
     const availableReels = items.filter((reel) => !hiddenReelIds.has(reel.id))
     const current = availableReels[index]
+    const maxIndex = availableReels.length - 1
 
     useEffect(() => {
         document.body.style.overflow = 'hidden'
@@ -43,18 +44,22 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
         )
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
             if (isSubmitting || feedback) return
 
             if (['1', '2', '3', '4', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'].includes(e.key))
                 e.preventDefault()
+
             if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-                setIndex((i) => Math.min(i + 1, availableReels.length - 1))
+                setIndex((i) => (i === maxIndex ? 0 : i + 1))
             }
+
             if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-                setIndex((i) => Math.max(i - 1, 0))
+                setIndex((i) => (i === 0 ? maxIndex : i - 1))
             }
+
             if (e.key === '1') decide('Prawda')
             if (e.key === '2') decide('Manipulacja')
             if (e.key === '3') decide('Fake / AI')
@@ -62,8 +67,9 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
         }
         window.addEventListener('keydown', onKey)
         return () => window.removeEventListener('keydown', onKey)
-    }, [isSubmitting, feedback, availableReels.length])
+    }, [isSubmitting, feedback, maxIndex])
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         const el = containerRef.current
         if (!el) return
@@ -74,10 +80,11 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
             if (timeout || isSubmitting || feedback) return
 
             const dir = e.deltaY > 0 ? 1 : -1
+
             if (dir > 0) {
-                setIndex((i) => Math.min(i + 1, availableReels.length - 1))
+                setIndex((i) => (i === maxIndex ? 0 : i + 1))
             } else {
-                setIndex((i) => Math.max(i - 1, 0))
+                setIndex((i) => (i === 0 ? maxIndex : i - 1))
             }
 
             timeout = setTimeout(() => {
@@ -90,7 +97,7 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
             el.removeEventListener('wheel', throttledWheel as any)
             if (timeout) clearTimeout(timeout)
         }
-    }, [isSubmitting, feedback, availableReels.length])
+    }, [isSubmitting, feedback, maxIndex])
 
     const onTouchStart = (e: React.TouchEvent) => {
         if (isSubmitting || feedback) return
@@ -106,9 +113,9 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
         const threshold = 60
         if (Math.abs(diff) > threshold) {
             if (diff > 0) {
-                setIndex((i) => Math.min(i + 1, availableReels.length - 1))
+                setIndex((i) => (i === maxIndex ? 0 : i + 1))
             } else {
-                setIndex((i) => Math.max(i - 1, 0))
+                setIndex((i) => (i === 0 ? maxIndex : i - 1))
             }
         }
         touchStartY.current = null
@@ -116,9 +123,13 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
 
     function closeFeedback() {
         setHiddenReelIds((prev) => new Set([...prev, current.id]))
-
         setFeedback(null)
         setIsSubmitting(false)
+
+        const newMaxIndex = availableReels.length - 2
+        if (index > newMaxIndex) {
+            setIndex(0)
+        }
     }
 
     const updateScore = async (isCorrect: boolean) => {
@@ -165,13 +176,6 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
                 ) as Reel['verdict']
 
                 const isCorrect = current.verdict === decisionForComparison
-
-                console.log('Sprawdzam odpowiedź:', {
-                    userAnswer: decisionForComparison,
-                    correctAnswer: current.verdict,
-                    isCorrect,
-                })
-
                 setFeedback(isCorrect ? 'correct' : 'incorrect')
 
                 if (isCorrect) {
@@ -180,9 +184,13 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
             } else {
                 setHiddenReelIds((prev) => new Set([...prev, current.id]))
                 setIsSubmitting(false)
+
+                const newMaxIndex = availableReels.length - 2
+                if (index > newMaxIndex) {
+                    setIndex(0)
+                }
             }
         } catch (error) {
-            console.error('Błąd podczas głosowania:', error)
             alert('Wystąpił błąd: ' + error)
             setIsSubmitting(false)
         }
@@ -239,6 +247,13 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
                                     <p className="mt-2 text-slate-600">
                                         Twoja odpowiedź jest poprawna!
                                     </p>
+                                    {current?.source && (
+                                        <div className="mt-4 rounded-xl bg-slate-50 p-4 text-left">
+                                            <p className="text-sm font-semibold leading-relaxed text-slate-700">
+                                                Źródło: {current.source}
+                                            </p>
+                                        </div>
+                                    )}
                                     <button
                                         onClick={closeFeedback}
                                         className="mt-6 w-full rounded-xl bg-emerald-500 px-6 py-3 text-white transition hover:bg-emerald-600"
@@ -262,6 +277,11 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
                                             </p>
                                         </div>
                                     )}
+                                    {current?.source && (
+                                        <p className="mt-2 text-sm font-semibold text-slate-700">
+                                            Źródło: {current.source}
+                                        </p>
+                                    )}
                                     {current?.source_link && (
                                         <a
                                             href={current.source_link}
@@ -269,7 +289,7 @@ export default function ReelFeed({ items, userId }: { items: Reel[]; userId: str
                                             rel="noopener noreferrer"
                                             className="mt-4 inline-block text-sm text-blue-600 hover:underline"
                                         >
-                                            Sprawdź źródło →
+                                            Sprawdź link →
                                         </a>
                                     )}
                                     <button
